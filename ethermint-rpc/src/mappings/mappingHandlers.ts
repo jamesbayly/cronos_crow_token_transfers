@@ -13,12 +13,13 @@ type TransferEventArgs = [string, string, BigNumber] & {
 export async function handleTransfer(
   event: EthermintEvmEvent<TransferEventArgs>
 ): Promise<void> {
+  logger.info("Found Transfer: " + event.transactionHash);
 
   const transfer = Transfer.create({
     id: event.transactionHash,
     from: event.args.from,
     to: event.args.to,
-    tokenId: event.args.tokenId.toBigInt()
+    tokenId: event.args.tokenId.toBigInt(),
   });
 
   await transfer.save();

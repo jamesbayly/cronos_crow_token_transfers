@@ -43,7 +43,9 @@ dataSources:
           kind: ethereum/LogHandler
           filter:
             topics:
-              - "Transfer(address indexed from, address indexed to, uint256 indexed tokenId)"
-              - null
-              - null
-              - null
+              # The topics filter follows the Ethereum JSON-PRC log filters
+              # https://docs.ethers.io/v5/concepts/events
+              # Example valid values:
+              # - '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+              # - Transfer(address,address,u256)
+              - Transfer(address indexed from, address indexed to, uint256 indexed tokenId)

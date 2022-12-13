@@ -13,6 +13,8 @@ type TransferEventArgs = [string, string, BigNumber] & {
 export async function handleTransfer(
   log: EthereumLog<TransferEventArgs>
 ): Promise<void> {
+  logger.info("Found Transfer: " + log.transactionHash);
+
   const transfer = Transfer.create({
     id: log.transactionHash,
     from: log.args.from,
